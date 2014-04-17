@@ -1,0 +1,17 @@
+FOR TRAINING
+
+
+bin/mallet import-dir --input Tweets/ --keep-sequence --remove-stopwords --output Train.mallet
+
+bin/mallet train-topics --input  Train.mallet --num-topics 10  --num-iterations  100 --inferencer-filename inferencer  --output-doc-topics  doc-topics.txt
+
+
+
+----------------------------------------------------------------------------------------
+
+FOR TESTING
+
+bin/mallet import-dir --input Random_User_tweets/ --keep-sequence --remove-stopwords --output test.mallet  --use-pipe-from Train.mallet
+
+bin/mallet infer-topics --input test.mallet --inferencer inferencer --output-doc-topics incoming.topics1 --num-iterations 100
+
